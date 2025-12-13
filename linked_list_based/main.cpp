@@ -6,9 +6,11 @@ int main() {
     Stack s;
     int x;
     s.push(5);
-    s.stackTop(x);
-
+    s.pop(x);
     cout << x << endl;
+    s.pop(x);
+    cout << x << endl;
+
     cout << s.stackIsEmpty() << endl;
 
     return 0;

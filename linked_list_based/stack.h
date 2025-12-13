@@ -1,23 +1,23 @@
 class Stack {
-    int * stack;
-    int top;
-    int count;
-    int maxSize;
+    class node {
+        public:
+            int e;
+            node * next;
+    };
 
-    // typedef int myType;
+    typedef node * ptr;
+    ptr top;
+    int count;
+    
+
 
     public:
-        Stack(int elementnum = 128);
+        Stack();
         Stack(const Stack &s);
         ~Stack();
         bool stackIsEmpty();
-        bool stackIsFull();
         void push(int);
         void pop(int &);
         void stackTop(int &);
         int stackSize();
-
-        // exrcise
-        void findMiddle();
-        void deleteMiddle();
 };

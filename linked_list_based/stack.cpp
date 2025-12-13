@@ -2,61 +2,57 @@
 #include "Stack.h"
 using namespace std;
 
-Stack::Stack(int elementnum) :top(-1), count(0), maxSize(elementnum)
+Stack::Stack()
 {
-    stack = new int[maxSize];
+    top = NULL;
+    count = 0;
 }
 
-Stack::Stack(const Stack &s) :top(s.top), count(s.count), maxSize(s.maxSize)
+Stack::Stack(const Stack &s)
 {
-    stack = new int[maxSize];
-    for(int i=0; i<=top; i++)
-        stack[i] = s.stack[i];
+    // 
 }
 
 Stack::~Stack(){
-    delete[] stack;
+    ptr p;
+    while(top != NULL) {
+        p = top;
+        top = top->next;
+        delete p;
+    }
 }
 
 bool Stack::stackIsEmpty(){
-    return (top < 0);
-}
-
-bool Stack::stackIsFull(){
-    return (top >= maxSize - 1);
+    return (top == NULL);
 }
 
 void Stack::push(int n){
-    if(stackIsFull()) cout << "Stack overflow" << endl;
-    else {
-        stack[++top] = n;
-        count++;
-    }
+    ptr p = new node;
+    p->e = n;
+    p->next = top;
+    top = p;
+    count++;
 } 
 
 void Stack::pop(int &x){
-    if(stackIsEmpty()) cout << "stack is underflow" << endl;
+    if(stackIsEmpty()) cout << "Stack underflow" << endl;
     else {
-        x = stack[top--];
+        ptr p;
+        x = top->e;
+        p = top;
+        top = top->next;
+        delete p;
         count--;
     }
 }
 
 void Stack::stackTop(int &x){
-    if(stackIsEmpty()) cout << "stack is underflow" << endl;
+    if(stackIsEmpty()) cout << "Stack underflow" << endl;
     else {
-        x = stack[top];
+        x = top->e;
     }
 }
 
 int Stack::stackSize(){
     return count;
-}
-
-// Exrcise
-void Stack::findMiddle(){
-
-}
-void Stack::deleteMiddle(){
-
 }
